@@ -21,6 +21,7 @@ async function run() {
 
     const servicesCollection = client.db("dentistUser").collection("servicesUser");
     const reviewCollection = client.db("dentistUser").collection("reviewUser");
+    const appormentBook = client.db("dentistUser").collection("appormentBook");
 
         app.post('/jwt', (req, res) => {
             const user = req.body;
@@ -54,7 +55,12 @@ async function run() {
             const order = req.body;
             const result = await servicesCollection.insertOne(order);
             res.send(result);
-
+        })
+        // ///////////   appormentBook .//////////////////
+        app.post('/appormentBook',  async (req, res) => {
+            const order = req.body;
+            const result = await appormentBook.insertOne(order);
+            res.send(result);
         })
 
         app.post('/review',  async (req, res) => {
